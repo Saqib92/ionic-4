@@ -17,14 +17,17 @@
     height: 380px;">
 		 <ion-item>
 		  <ion-label position="floating">Email</ion-label>
-		  <ion-input [(ngModel)]="email"></ion-input>
+		  <ion-input [(ngModel)]="email" type="email"></ion-input>
 		</ion-item>
 		<ion-item>
 		  <ion-label position="floating">Password</ion-label>
-		  <ion-input [(ngModel)]="password"></ion-input>
+		  <ion-input [(ngModel)]="password" type="password"></ion-input>
 		</ion-item>
 
 		<ion-button expand="block" margin (click)="login(email, password)">Login</ion-button>
+    <ion-button expand="block" margin (click)="getData()">get Api</ion-button>
+
+    
 	</div>
 
 

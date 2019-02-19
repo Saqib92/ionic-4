@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,11 @@ export class HttpService {
 globalUrl:any;
 headers:any;
 loading:any;
-  constructor(public http: Http, public loadingController: LoadingController) {
+  constructor(
+    public http: Http,
+    public loadingController: LoadingController,
+    public alertController: AlertController
+    ) {
   	this.globalUrl = 'https://wizdiary.com/api/v1/'
    }
 
@@ -29,6 +34,22 @@ loading:any;
     });
   }
 
+  getApi(link){
+    this.presentLoading();
+    this.headers = {'Content-Type':'application/json'};
+    return new Promise(resolve => {
+      this.http.get(this.globalUrl+link, {headers: this.headers})
+      .subscribe(data => {
+            resolve(data.json());
+            this.stoploading();
+        },
+      (err) => {
+          console.log("Error" + err)
+          this.stoploading();
+         })
+    });
+  }
+
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
@@ -40,5 +61,15 @@ loading:any;
   }
   stoploading(){
   	this.loading.dismiss();
+  }
+
+  async presentAlert(h, m) {
+    const alert = await this.alertController.create({
+      header: h,
+      message: m,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
