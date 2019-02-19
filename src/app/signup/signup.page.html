@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+	  <ion-item-sliding (ionSwipe)="abc()">
+	    <ion-item>
+	      <ion-label>Item</ion-label>
+	    </ion-item>
+	    <ion-item-options side="start">
+	      <ion-item-option >Favorite</ion-item-option>
+	      <ion-item-option color="danger" >Share</ion-item-option>
+	    </ion-item-options>
+
+	    <ion-item-options side="end">
+	      <ion-item-option>Unread</ion-item-option>
+	    </ion-item-options>
+	  </ion-item-sliding>
+	</ion-list>
+</ion-content>
