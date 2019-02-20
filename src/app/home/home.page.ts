@@ -44,7 +44,7 @@ validateEmail(mail) {
 	      device_token : ''
 	    };
 
-	    this.http.postApi('login', loginObj).then((res:any)=>{
+	    this.http.postApi('login', loginObj, true).then((res:any)=>{
 	    	console.log(res);
 	    	if (res.success) {
 	    		this.http.presentAlert('Success', res.message);

@@ -18,14 +18,18 @@ loading:any;
   	this.globalUrl = 'https://wizdiary.com/api/v1/'
    }
 
-  postApi(link, data){
-  	this.presentLoading();
+  postApi(link, data, loader){
+    if(loader == true){
+    	this.presentLoading();
+    }
   	this.headers = {'Content-Type':'application/json'};
   	return new Promise(resolve => {
   		this.http.post(this.globalUrl+link, JSON.stringify(data), {headers: this.headers})
   		.subscribe(data => {
             resolve(data.json());
-            this.stoploading();
+            if(loader == true){
+              this.stoploading();
+            }
         },
     	(err) => {
 	        console.log("Error" + err)
